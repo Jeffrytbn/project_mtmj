@@ -1,0 +1,87 @@
+<!-- HERO SECTION -->
+<section class="resources-hero">
+  <div class="resources-hero__overlay"></div>
+  <div class="resources-hero__content container">
+    <h1 class="resources-hero__title">{{ heroTitle }}</h1>
+    <p class="resources-hero__subtitle">{{ heroSubtitle }}</p>
+  </div>
+</section>
+
+<!-- DOWNLOADS SECTION -->
+<section class="resources-downloads section-padding">
+  <div class="container">
+    <div class="downloads-card">
+      <div class="downloads-card__content">
+        <h2 class="downloads-card__title">Corporate Profile 2024</h2>
+        <p class="downloads-card__desc">
+          Download our comprehensive company profile to learn more about our 
+          full EPC capabilities, organizational structure, and complete project portfolio.
+        </p>
+      </div>
+      <div class="downloads-card__action">
+        <button class="btn btn-primary btn-lg" (click)="downloadProfile()">
+          <span class="material-icons">picture_as_pdf</span>
+          Download PDF (4.2 MB)
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS SECTION -->
+<section class="resources-certs section-padding">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-label">ACCREDITATIONS</span>
+      <h2 class="section-title">Official Certifications</h2>
+      <p class="section-subtitle">Our commitment to international standards of quality, safety, and environmental management.</p>
+    </div>
+
+    <div class="certs-grid">
+      <div class="cert-card" *ngFor="let cert of certificates">
+        <div class="cert-card__icon">
+          <span class="material-icons" *ngIf="cert.category === 'iso'">verified</span>
+          <span class="material-icons" *ngIf="cert.category === 'safety'">health_and_safety</span>
+          <span class="material-icons" *ngIf="cert.category === 'environmental'">eco</span>
+          <span class="material-icons" *ngIf="cert.category === 'professional'">workspace_premium</span>
+        </div>
+        <h3 class="cert-card__title">{{ cert.title }}</h3>
+        <p class="cert-card__org">{{ cert.issuingOrganization }}</p>
+        <p class="cert-card__number">No. {{ cert.certificateNumber }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS SECTION -->
+<section class="resources-news section-padding">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-label">LATEST UPDATES</span>
+      <h2 class="section-title">Company News</h2>
+    </div>
+
+    <div class="news-grid">
+      <article class="news-card" *ngFor="let item of latestNews">
+        <div class="news-card__image">
+          <img [src]="item.imageUrl" [alt]="item.title" loading="lazy" />
+          <span class="news-card__category">{{ item.category }}</span>
+        </div>
+        <div class="news-card__content">
+          <div class="news-card__meta">
+            <span class="material-icons">event</span>
+            {{ item.publishedAt | date:'mediumDate' }}
+          </div>
+          <h3 class="news-card__title">
+            <a routerLink="/news/{{ item.slug }}">{{ item.title }}</a>
+          </h3>
+          <p class="news-card__excerpt">{{ item.excerpt }}</p>
+          <a routerLink="/news/{{ item.slug }}" class="news-card__read-more">
+            Read Full Article
+            <span class="material-icons">arrow_forward</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

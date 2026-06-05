@@ -1,0 +1,110 @@
+<!-- =============================== -->
+<!-- HERO SECTION                    -->
+<!-- =============================== -->
+<section class="about-hero">
+  <div class="about-hero__overlay"></div>
+  <div class="about-hero__content container">
+    <span class="about-hero__label">{{ heroLabel }}</span>
+    <h1 class="about-hero__title">{{ heroTitle }}</h1>
+    <p class="about-hero__subtitle">{{ heroSubtitle }}</p>
+  </div>
+</section>
+
+<!-- =============================== -->
+<!-- ABOUT THE FIRM SECTION          -->
+<!-- =============================== -->
+<section class="about-firm section-padding">
+  <div class="container">
+    <span class="section-label">{{ aboutLabel }}</span>
+    <h2 class="about-firm__title">{{ aboutTitle }}</h2>
+
+    <div class="about-firm__grid">
+      <div class="about-firm__text">
+        <p>{{ aboutDescription }}</p>
+
+        <div class="about-firm__stats">
+          <div class="about-firm__stat" *ngFor="let stat of companyStats">
+            <span class="about-firm__stat-value">{{ stat.value }}</span>
+            <span class="about-firm__stat-label">{{ stat.label }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-firm__image">
+        <img
+          src="/assets/images/about/office.jpg"
+          alt="MTJM Office"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== -->
+<!-- INFRASTRUCTURE SECTION          -->
+<!-- =============================== -->
+<section class="about-infra section-padding">
+  <div class="container">
+    <div class="about-infra__header">
+      <span class="section-label section-label--center">{{ infraLabel }}</span>
+      <h2 class="about-infra__title">{{ infraTitle }}</h2>
+      <p class="about-infra__description">{{ infraDescription }}</p>
+    </div>
+
+    <div class="about-infra__image-wrapper">
+      <img
+        src="/assets/images/about/infrastructure.jpg"
+        alt="MTJM Infrastructure"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="about-infra__features">
+      <div class="about-infra__feature" *ngFor="let feature of infraFeatures">
+        <div class="about-infra__feature-icon">
+          <span class="material-icons">{{ feature.icon }}</span>
+        </div>
+        <h3 class="about-infra__feature-title">{{ feature.title }}</h3>
+        <p class="about-infra__feature-desc">{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== -->
+<!-- LEADERSHIP SECTION              -->
+<!-- =============================== -->
+<section class="about-leadership section-padding">
+  <div class="container">
+    <div class="about-leadership__header">
+      <span class="section-label section-label--center">{{ leadershipLabel }}</span>
+      <h2 class="about-leadership__title">{{ leadershipTitle }}</h2>
+    </div>
+
+    <div class="about-leadership__grid">
+      <div class="about-leadership__card" *ngFor="let member of teamMembers">
+        <div class="about-leadership__card-image">
+          <img [src]="member.imageUrl" [alt]="member.name" loading="lazy" />
+        </div>
+        <div class="about-leadership__card-info">
+          <h4 class="about-leadership__card-name">{{ member.name }}</h4>
+          <p class="about-leadership__card-position">{{ member.position }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== -->
+<!-- CTA SECTION                     -->
+<!-- =============================== -->
+<section class="about-cta">
+  <div class="container about-cta__content">
+    <h2 class="about-cta__title">{{ ctaTitle }}</h2>
+    <p class="about-cta__description">{{ ctaDescription }}</p>
+    <a routerLink="/contact" class="btn btn-primary about-cta__btn">
+      Contact Our Team
+    </a>
+  </div>
+</section>

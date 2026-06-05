@@ -1,0 +1,237 @@
+@import 'variables';
+
+// ============================================
+// HERO
+// ============================================
+.industries-hero {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/assets/images/services/hero-bg.jpg'); // Reusing service bg for consistency
+  background-size: cover;
+  background-position: center;
+  background-color: $color-primary;
+  padding-top: $header-height;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba($color-primary, 0.95) 0%, rgba($color-primary-medium, 0.85) 100%);
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: $spacing-4xl 0;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+    line-height: 1.25;
+    margin-bottom: $spacing-lg;
+
+    @include respond-to('md') {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+}
+
+// ============================================
+// INDUSTRIES LIST
+// ============================================
+.industries-list {
+  background-color: $color-bg-light;
+}
+
+.industry-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-4xl;
+  align-items: center;
+  margin-bottom: $spacing-4xl;
+
+  @include respond-to('lg') {
+    gap: $spacing-2xl;
+  }
+
+  @include respond-to('md') {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+    margin-bottom: $spacing-3xl;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &--reverse {
+    .industry-item__image {
+      order: 2;
+      
+      @include respond-to('md') {
+        order: 1;
+      }
+    }
+    
+    .industry-item__content {
+      order: 1;
+      
+      @include respond-to('md') {
+        order: 2;
+      }
+    }
+  }
+
+  &__image {
+    position: relative;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    box-shadow: $shadow-lg;
+    aspect-ratio: 4 / 3;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slow;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: $color-accent;
+    width: 72px;
+    height: 72px;
+    @include flex-center;
+    border-top-left-radius: $border-radius-lg;
+
+    .industry-item--reverse & {
+      right: auto;
+      left: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: $border-radius-lg;
+    }
+
+    .material-icons {
+      font-size: 36px;
+      color: $color-white;
+    }
+  }
+
+  &__content {
+    padding: $spacing-lg 0;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-dark;
+    margin-bottom: $spacing-md;
+    
+    @include respond-to('sm') {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__desc {
+    font-size: $font-size-base;
+    color: $color-text-muted;
+    line-height: 1.7;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__highlights {
+    margin-bottom: $spacing-xl;
+    background-color: $color-white;
+    padding: $spacing-lg;
+    border-radius: $border-radius-md;
+    border-left: 4px solid $color-primary;
+
+    &-title {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      color: $color-text-dark;
+      margin-bottom: $spacing-sm;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: $spacing-sm;
+      font-size: $font-size-sm;
+      color: $color-text-dark;
+
+      .material-icons {
+        font-size: 18px;
+        color: $color-accent;
+        margin-top: 2px;
+      }
+    }
+  }
+}
+
+// ============================================
+// CTA SECTION
+// ============================================
+.industries-cta {
+  background-color: $color-white;
+  padding: $spacing-4xl 0;
+  border-top: 1px solid $color-border;
+
+  &__content {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-dark;
+    margin-bottom: $spacing-md;
+
+    @include respond-to('md') {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__description {
+    font-size: $font-size-base;
+    color: $color-text-muted;
+    line-height: 1.7;
+    margin-bottom: $spacing-xl;
+  }
+}

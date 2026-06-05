@@ -1,0 +1,60 @@
+<header class="header" [class.scrolled]="isScrolled">
+  <div class="header__container">
+    <!-- Logo -->
+    <a routerLink="/" class="header__logo" (click)="closeMobileMenu()">
+      <div class="header__logo-icon">
+        <span class="material-icons">precision_manufacturing</span>
+      </div>
+      <span class="header__logo-text">MTJM</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="header__nav" role="navigation" aria-label="Main navigation">
+      <a
+        *ngFor="let item of navItems"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+        class="header__nav-link"
+      >
+        {{ item.label }}
+      </a>
+    </nav>
+
+    <!-- CTA Button -->
+    <a routerLink="/contact" class="header__cta btn btn-primary">
+      Request Quotation
+    </a>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      class="header__hamburger"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="isMobileMenuOpen"
+      aria-label="Toggle navigation menu"
+    >
+      <span class="header__hamburger-line" [class.open]="isMobileMenuOpen"></span>
+      <span class="header__hamburger-line" [class.open]="isMobileMenuOpen"></span>
+      <span class="header__hamburger-line" [class.open]="isMobileMenuOpen"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="header__mobile-menu" [class.open]="isMobileMenuOpen">
+    <nav class="header__mobile-nav">
+      <a
+        *ngFor="let item of navItems"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+        class="header__mobile-link"
+        (click)="closeMobileMenu()"
+      >
+        {{ item.label }}
+      </a>
+      <a routerLink="/contact" class="btn btn-primary header__mobile-cta" (click)="closeMobileMenu()">
+        Request Quotation
+      </a>
+    </nav>
+  </div>
+</header>

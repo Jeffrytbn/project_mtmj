@@ -1,0 +1,119 @@
+@import 'variables';
+
+.footer {
+  background-color: $color-primary;
+  color: $color-text-light;
+
+  &__main {
+    padding: $spacing-3xl 0 $spacing-2xl;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: $spacing-3xl;
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+      gap: $spacing-xl;
+    }
+  }
+
+  // ---- Brand ----
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    text-decoration: none;
+  }
+
+  &__logo-icon {
+    width: 36px;
+    height: 36px;
+    background-color: $color-accent;
+    border-radius: $border-radius-sm;
+    @include flex-center;
+
+    .material-icons {
+      font-size: 20px;
+      color: $color-white;
+    }
+  }
+
+  &__logo-text {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+    letter-spacing: 1px;
+  }
+
+  &__tagline {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    line-height: 1.6;
+    max-width: 280px;
+  }
+
+  // ---- Columns ----
+  &__column-title {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $color-white;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  &__link {
+    font-size: $font-size-sm;
+    color: $color-accent;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: lighten($color-accent, 15%);
+    }
+  }
+
+  // ---- Contact ----
+  &__contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-sm;
+    font-size: $font-size-sm;
+    color: $color-text-light;
+  }
+
+  &__contact-icon {
+    font-size: 18px;
+    color: $color-accent;
+    margin-top: 1px;
+  }
+
+  // ---- Copyright ----
+  &__copyright {
+    border-top: 1px solid rgba($color-white, 0.08);
+    padding: $spacing-lg 0;
+
+    p {
+      font-size: $font-size-xs;
+      color: rgba($color-white, 0.5);
+      text-align: center;
+    }
+  }
+}

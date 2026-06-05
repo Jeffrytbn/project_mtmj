@@ -1,0 +1,335 @@
+@import 'variables';
+
+// ============================================
+// HERO
+// ============================================
+.contact-hero {
+  position: relative;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/assets/images/contact/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: $color-primary;
+  padding-top: $header-height;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba($color-primary, 0.85);
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: $spacing-3xl 0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $color-accent;
+    line-height: 1.25;
+    margin-bottom: $spacing-md;
+    white-space: pre-line;
+
+    @include respond-to('md') {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    line-height: 1.7;
+  }
+}
+
+// ============================================
+// CONTACT INFO CARDS
+// ============================================
+.contact-info {
+  background-color: $color-white;
+  padding: $spacing-2xl 0;
+  border-bottom: 1px solid $color-border;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl;
+
+    @include respond-to('lg') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to('sm') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    padding: $spacing-lg;
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    border: 2px solid $color-primary;
+    border-radius: 50%;
+    @include flex-center;
+    margin-bottom: $spacing-md;
+
+    .material-icons {
+      font-size: 22px;
+      color: $color-primary;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $color-text-dark;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__lines {
+    p {
+      font-size: $font-size-sm;
+      color: $color-text-muted;
+      line-height: 1.5;
+    }
+  }
+}
+
+// ============================================
+// FORM + SIDEBAR LAYOUT
+// ============================================
+.contact-main {
+  background-color: $color-white;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: $spacing-3xl;
+    align-items: start;
+
+    @include respond-to('lg') {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// ---- Form Wrapper ----
+.contact-form-wrapper {
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+  padding: $spacing-2xl;
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-dark;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__desc {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    line-height: 1.6;
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
+
+    @include respond-to('sm') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    label {
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+      color: $color-text-dark;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input, select, textarea {
+      font-family: $font-family-base;
+      font-size: $font-size-sm;
+      padding: 0.75rem $spacing-md;
+      border: 1px solid $color-border;
+      border-radius: $border-radius-sm;
+      color: $color-text-dark;
+      background-color: $color-white;
+      transition: border-color $transition-fast;
+      outline: none;
+
+      &:focus {
+        border-color: $color-primary;
+      }
+
+      &::placeholder {
+        color: lighten($color-text-muted, 15%);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 2rem;
+    }
+  }
+
+  &__error {
+    font-size: $font-size-xs;
+    color: #dc2626;
+  }
+
+  &__submit {
+    align-self: flex-start;
+    padding: 0.75rem 2rem;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__message {
+    padding: $spacing-md;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-sm;
+    background-color: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+
+    &.success {
+      background-color: #f0fdf4;
+      color: #16a34a;
+      border-color: #bbf7d0;
+    }
+  }
+}
+
+// ---- Emergency Card ----
+.emergency-card {
+  background-color: $color-bg-light;
+  border-radius: $border-radius-md;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-xl;
+  border: 1px solid $color-border;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+
+    .material-icons {
+      font-size: 22px;
+      color: $color-accent;
+    }
+
+    h3 {
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      color: $color-text-dark;
+    }
+  }
+
+  &__desc {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    line-height: 1.6;
+    margin-bottom: $spacing-md;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $color-accent;
+    cursor: pointer;
+    transition: gap $transition-fast;
+
+    &:hover {
+      gap: $spacing-sm;
+    }
+
+    .material-icons {
+      font-size: 18px;
+    }
+  }
+}
+
+// ---- Map Card ----
+.map-card {
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  border: 1px solid $color-border;
+
+  &__placeholder {
+    height: 240px;
+    background-color: $color-bg-light;
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    .material-icons {
+      font-size: 48px;
+      color: $color-text-muted;
+    }
+
+    p {
+      font-size: $font-size-sm;
+      color: $color-text-muted;
+    }
+  }
+
+  &__hours {
+    padding: $spacing-lg;
+    background-color: $color-white;
+
+    h4 {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      color: $color-text-dark;
+      margin-bottom: $spacing-xs;
+    }
+
+    p {
+      font-size: $font-size-sm;
+      color: $color-text-muted;
+    }
+  }
+}

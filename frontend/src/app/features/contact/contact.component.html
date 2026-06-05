@@ -1,0 +1,129 @@
+<!-- HERO SECTION -->
+<section class="contact-hero">
+  <div class="contact-hero__overlay"></div>
+  <div class="contact-hero__content container">
+    <h1 class="contact-hero__title">{{ heroTitle }}</h1>
+    <p class="contact-hero__subtitle">{{ heroSubtitle }}</p>
+  </div>
+</section>
+
+<!-- CONTACT INFO CARDS -->
+<section class="contact-info">
+  <div class="container">
+    <div class="contact-info__grid">
+      <div class="contact-info__card" *ngFor="let card of contactCards">
+        <div class="contact-info__icon">
+          <span class="material-icons">{{ card.icon }}</span>
+        </div>
+        <h3 class="contact-info__title">{{ card.title }}</h3>
+        <div class="contact-info__lines">
+          <p *ngFor="let line of card.lines">{{ line }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM + SIDEBAR -->
+<section class="contact-main section-padding">
+  <div class="container contact-main__grid">
+    <!-- Left: Form -->
+    <div class="contact-form-wrapper">
+      <h2 class="contact-form-wrapper__title">Project Inquiries</h2>
+      <p class="contact-form-wrapper__desc">
+        Provide details about your project requirements, and our engineering team will evaluate and
+        respond within 24 hours.
+      </p>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+        <div class="contact-form__row">
+          <div class="contact-form__field">
+            <label for="name">FULL NAME</label>
+            <input id="name" type="text" formControlName="name" placeholder="John Doe" />
+            <span class="contact-form__error" *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.invalid">
+              Name is required
+            </span>
+          </div>
+          <div class="contact-form__field">
+            <label for="company">COMPANY NAME</label>
+            <input id="company" type="text" formControlName="company" placeholder="Acme Corp" />
+          </div>
+        </div>
+
+        <div class="contact-form__row">
+          <div class="contact-form__field">
+            <label for="email">WORK EMAIL</label>
+            <input id="email" type="email" formControlName="email" placeholder="john@acme.com" />
+            <span class="contact-form__error" *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid">
+              Valid email is required
+            </span>
+          </div>
+          <div class="contact-form__field">
+            <label for="phone">PHONE NUMBER</label>
+            <input id="phone" type="tel" formControlName="phone" placeholder="+62..." />
+            <span class="contact-form__error" *ngIf="contactForm.get('phone')?.touched && contactForm.get('phone')?.invalid">
+              Phone is required
+            </span>
+          </div>
+        </div>
+
+        <div class="contact-form__field">
+          <label for="projectType">PROJECT TYPE</label>
+          <select id="projectType" formControlName="projectType">
+            <option value="" disabled selected>Select project type</option>
+            <option *ngFor="let type of projectTypes" [value]="type">{{ type }}</option>
+          </select>
+          <span class="contact-form__error" *ngIf="contactForm.get('projectType')?.touched && contactForm.get('projectType')?.invalid">
+            Please select a project type
+          </span>
+        </div>
+
+        <div class="contact-form__field">
+          <label for="message">PROJECT DETAILS</label>
+          <textarea id="message" formControlName="message" rows="5" placeholder="Describe scope, scale, and timeline..."></textarea>
+          <span class="contact-form__error" *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.invalid">
+            Please provide project details (min 10 characters)
+          </span>
+        </div>
+
+        <button type="submit" class="btn btn-primary contact-form__submit" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Sending...' : 'Submit Inquiry' }}
+        </button>
+
+        <div class="contact-form__message" *ngIf="submitMessage" [class.success]="submitSuccess">
+          {{ submitMessage }}
+        </div>
+      </form>
+    </div>
+
+    <!-- Right: Sidebar -->
+    <aside class="contact-sidebar">
+      <!-- Emergency Card -->
+      <div class="emergency-card">
+        <div class="emergency-card__header">
+          <span class="material-icons">warning</span>
+          <h3>24/7 Emergency Services</h3>
+        </div>
+        <p class="emergency-card__desc">
+          Immediate engineering response for critical infrastructure failures.
+        </p>
+        <a href="tel:+6281188880188" class="emergency-card__link">
+          Call Emergency Hotline
+          <span class="material-icons">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Map Placeholder -->
+      <div class="map-card">
+        <div class="map-card__placeholder">
+          <span class="material-icons">map</span>
+          <p>Google Maps</p>
+        </div>
+        <div class="map-card__hours">
+          <h4>Operating Hours</h4>
+          <p>{{ operatingHours }}</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>

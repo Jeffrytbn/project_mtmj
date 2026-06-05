@@ -1,0 +1,130 @@
+import { Project } from '../models';
+
+export const MOCK_PROJECTS: Project[] = [
+  {
+    id: 1,
+    title: 'Major Power Plant EPC Expansion',
+    slug: 'major-power-plant-epc-expansion',
+    description: 'The Major Power Plant Expansion project was initiated to address the growing energy demands in the region, requiring an additional 500MW capacity. Integrated from the initial conceptual design through detailed engineering to full commissioning of the new generation units. The project demanded extensive coordination across the entire lifecycle, from structural analysis to the final commissioning of the new generation units.',
+    shortDescription: 'Delivering critical power generation capacity through precision engineering, rigorous procurement, and advanced construction methodologies.',
+    client: 'National Energy Corp',
+    location: 'Java, Indonesia',
+    category: 'Mechanical',
+    imageUrl: '/assets/images/projects/power-plant.jpg',
+    galleryImages: [
+      '/assets/images/projects/power-plant.jpg',
+      '/assets/images/projects/assembly-line.jpg',
+      '/assets/images/projects/port-expansion.jpg'
+    ],
+    startDate: '2021-03-01',
+    endDate: '2023-06-30',
+    status: 'completed',
+    serviceId: 4,
+    isActive: true,
+    createdAt: '2021-03-01',
+    updatedAt: '2024-01-01'
+  },
+  {
+    id: 2,
+    title: 'Heavy Equipment Assembly Line',
+    slug: 'heavy-equipment-assembly-line',
+    description: 'Design and construction of a state-of-the-art heavy equipment assembly line featuring automated systems, precision tooling, and quality control stations.',
+    shortDescription: 'Advanced assembly line for heavy industrial equipment manufacturing.',
+    client: 'PT Industrial Manufacturing',
+    location: 'Cikarang, Indonesia',
+    category: 'Mechanical',
+    imageUrl: '/assets/images/projects/assembly-line.jpg',
+    galleryImages: [
+      '/assets/images/projects/assembly-line.jpg',
+      '/assets/images/projects/power-plant.jpg'
+    ],
+    startDate: '2022-06-01',
+    endDate: '2023-12-15',
+    status: 'completed',
+    serviceId: 4,
+    isActive: true,
+    createdAt: '2022-06-01',
+    updatedAt: '2024-01-01'
+  },
+  {
+    id: 3,
+    title: 'Industrial Port Expansion',
+    slug: 'industrial-port-expansion',
+    description: 'Comprehensive port infrastructure expansion including new berth construction, crane installation, and logistics system integration.',
+    shortDescription: 'Major port infrastructure development and logistics integration.',
+    client: 'PT Pelabuhan Nusantara',
+    location: 'Balikpapan, Indonesia',
+    category: 'Construction',
+    imageUrl: '/assets/images/projects/port-expansion.jpg',
+    galleryImages: [
+      '/assets/images/projects/port-expansion.jpg',
+      '/assets/images/projects/power-plant.jpg'
+    ],
+    startDate: '2023-01-01',
+    endDate: '2024-06-30',
+    status: 'completed',
+    serviceId: 3,
+    isActive: true,
+    createdAt: '2023-01-01',
+    updatedAt: '2024-07-01'
+  },
+  {
+    id: 4,
+    title: 'Petrochemical Refinery Upgrade',
+    slug: 'petrochemical-refinery-upgrade',
+    description: 'Major upgrade and modernization of petrochemical refinery systems including new reactor vessels, piping networks, and control systems.',
+    shortDescription: 'Refinery modernization with advanced reactor and control systems.',
+    client: 'PT Petrokimia Nasional',
+    location: 'Surabaya, Indonesia',
+    category: 'Engineering',
+    imageUrl: '/assets/images/projects/power-plant.jpg',
+    galleryImages: [
+      '/assets/images/projects/power-plant.jpg'
+    ],
+    startDate: '2023-06-01',
+    endDate: '2025-03-31',
+    status: 'in-progress',
+    serviceId: 1,
+    isActive: true,
+    createdAt: '2023-06-01',
+    updatedAt: '2024-06-01'
+  },
+  {
+    id: 5,
+    title: 'Water Treatment Facility',
+    slug: 'water-treatment-facility',
+    description: 'Design and construction of an advanced water treatment facility with modern filtration, purification, and distribution systems.',
+    shortDescription: 'Advanced water treatment and purification plant construction.',
+    client: 'PT Aqua Solutions',
+    location: 'Tangerang, Indonesia',
+    category: 'Construction',
+    imageUrl: '/assets/images/projects/assembly-line.jpg',
+    galleryImages: [],
+    startDate: '2024-01-01',
+    endDate: '2025-12-31',
+    status: 'in-progress',
+    serviceId: 3,
+    isActive: true,
+    createdAt: '2024-01-01',
+    updatedAt: '2024-06-01'
+  },
+  {
+    id: 6,
+    title: 'Mining Infrastructure Development',
+    slug: 'mining-infrastructure-development',
+    description: 'Complete infrastructure development for mining operations including processing facilities, conveyor systems, and power distribution.',
+    shortDescription: 'Comprehensive mining infrastructure and processing facility.',
+    client: 'PT Mining Resources',
+    location: 'Kalimantan, Indonesia',
+    category: 'Engineering',
+    imageUrl: '/assets/images/projects/port-expansion.jpg',
+    galleryImages: [],
+    startDate: '2024-03-01',
+    endDate: '2026-06-30',
+    status: 'upcoming',
+    serviceId: 1,
+    isActive: true,
+    createdAt: '2024-03-01',
+    updatedAt: '2024-06-01'
+  }
+];

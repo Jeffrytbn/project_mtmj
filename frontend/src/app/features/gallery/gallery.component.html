@@ -1,0 +1,48 @@
+<!-- HERO SECTION -->
+<section class="industries-hero">
+  <div class="industries-hero__overlay"></div>
+  <div class="industries-hero__content container">
+    <h1 class="industries-hero__title">{{ heroTitle }}</h1>
+    <p class="industries-hero__subtitle">{{ heroSubtitle }}</p>
+  </div>
+</section>
+
+<!-- INDUSTRIES LIST -->
+<section class="industries-list section-padding">
+  <div class="container">
+    <div class="industry-item" *ngFor="let industry of industries; let i = index" [class.industry-item--reverse]="i % 2 !== 0">
+      <div class="industry-item__image">
+        <img [src]="industry.imageUrl" [alt]="industry.title" loading="lazy" />
+        <div class="industry-item__icon">
+          <span class="material-icons">{{ industry.icon }}</span>
+        </div>
+      </div>
+      
+      <div class="industry-item__content">
+        <h2 class="industry-item__title">{{ industry.title }}</h2>
+        <p class="industry-item__desc">{{ industry.description }}</p>
+        
+        <div class="industry-item__highlights">
+          <h4 class="industry-item__highlights-title">Key Capabilities:</h4>
+          <ul>
+            <li *ngFor="let highlight of industry.highlights">
+              <span class="material-icons">check</span>
+              {{ highlight }}
+            </li>
+          </ul>
+        </div>
+        
+        <a routerLink="/projects" class="btn btn-outline-primary">View Related Projects</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="industries-cta">
+  <div class="container industries-cta__content">
+    <h2 class="industries-cta__title">{{ ctaTitle }}</h2>
+    <p class="industries-cta__description">{{ ctaDescription }}</p>
+    <a routerLink="/contact" class="btn btn-primary">Contact Engineering Team</a>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+<section class="hero" id="hero">
+  <div class="hero__overlay"></div>
+  <div class="hero__container container">
+    <!-- Left Content -->
+    <div class="hero__content">
+      <h1 class="hero__title">{{ heroTitle }}</h1>
+      <p class="hero__description">{{ heroDescription }}</p>
+      <div class="hero__actions">
+        <a routerLink="/contact" class="btn btn-primary">Request Quotation</a>
+        <a routerLink="/projects" class="btn btn-outline">View Projects</a>
+      </div>
+    </div>
+
+    <!-- Stats Card -->
+    <div class="hero__stats-card">
+      <div class="hero__stats-grid">
+        <div class="hero__stat" *ngFor="let stat of heroStats">
+          <ng-container *ngIf="stat.icon; else valueTemplate">
+            <span class="material-icons hero__stat-icon">{{ stat.icon }}</span>
+          </ng-container>
+          <ng-template #valueTemplate>
+            <span class="hero__stat-value">{{ stat.value }}</span>
+          </ng-template>
+          <span class="hero__stat-label">{{ stat.label }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

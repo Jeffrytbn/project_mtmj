@@ -1,0 +1,153 @@
+// ============================================
+// MTJM Global Styles
+// ============================================
+
+// Angular Material Theming
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$frontend-primary: mat.define-palette(mat.$indigo-palette);
+$frontend-accent: mat.define-palette(mat.$orange-palette, A200, A100, A400);
+$frontend-warn: mat.define-palette(mat.$red-palette);
+
+$frontend-theme: mat.define-light-theme((
+  color: (
+    primary: $frontend-primary,
+    accent: $frontend-accent,
+    warn: $frontend-warn,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: 'Inter, sans-serif',
+  ),
+  density: 0
+));
+
+@include mat.all-component-themes($frontend-theme);
+
+// Design System Variables
+@import './styles/variables';
+
+// ============================================
+// Reset & Base
+// ============================================
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: 1.6;
+  color: $color-text-dark;
+  background-color: $color-white;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color $transition-fast;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  font-weight: $font-weight-bold;
+}
+
+// ============================================
+// Utility Classes
+// ============================================
+.container {
+  @include container;
+}
+
+.section-padding {
+  padding: $spacing-4xl 0;
+
+  @include respond-to('md') {
+    padding: $spacing-3xl 0;
+  }
+
+  @include respond-to('sm') {
+    padding: $spacing-2xl 0;
+  }
+}
+
+// ============================================
+// Button Styles (matching design)
+// ============================================
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: 0.75rem 1.75rem;
+  font-family: $font-family-base;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  border-radius: $border-radius-sm;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all $transition-base;
+  white-space: nowrap;
+  text-decoration: none;
+
+  &-primary {
+    background-color: $color-accent;
+    color: $color-white;
+    border-color: $color-accent;
+
+    &:hover {
+      background-color: $color-accent-hover;
+      border-color: $color-accent-hover;
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &-outline {
+    background-color: transparent;
+    color: $color-white;
+    border-color: $color-white;
+
+    &:hover {
+      background-color: $color-white;
+      color: $color-primary;
+      transform: translateY(-1px);
+    }
+  }
+
+  &-outline-dark {
+    background-color: transparent;
+    color: $color-primary;
+    border-color: $color-primary;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+      transform: translateY(-1px);
+    }
+  }
+}

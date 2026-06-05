@@ -1,0 +1,232 @@
+@import 'variables';
+
+.section-label {
+  display: inline-block;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-accent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: $spacing-sm;
+  &--center { display: block; text-align: center; }
+}
+
+// ============================================
+// HERO
+// ============================================
+.projects-hero {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/assets/images/projects/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: $color-primary;
+  padding-top: $header-height;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba($color-primary, 0.7) 0%, rgba($color-primary, 0.85) 100%);
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: $spacing-4xl 0;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+    line-height: 1.25;
+    margin-bottom: $spacing-lg;
+    white-space: pre-line;
+    @include respond-to('md') { font-size: $font-size-2xl; }
+  }
+
+  &__subtitle {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    line-height: 1.7;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+}
+
+// ============================================
+// STATS BAR
+// ============================================
+.projects-stats {
+  background-color: $color-white;
+  padding: $spacing-2xl 0;
+  border-bottom: 1px solid $color-border;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl;
+    text-align: center;
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-lg;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: $spacing-md;
+    border: 2px solid $color-primary;
+    border-radius: $border-radius-md;
+  }
+
+  &__value {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    line-height: 1;
+  }
+
+  &__label {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+// ============================================
+// FILTER & GRID
+// ============================================
+.projects-grid {
+  background-color: $color-white;
+
+  &__filters {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+    flex-wrap: wrap;
+  }
+
+  &__filter-btn {
+    padding: $spacing-sm $spacing-lg;
+    font-family: $font-family-base;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-text-muted;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      color: $color-text-dark;
+    }
+
+    &.active {
+      color: $color-primary;
+      border-bottom-color: $color-primary;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// ---- Project Card ----
+.project-card {
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  position: relative;
+
+  &--large {
+    grid-column: 1 / -1;
+  }
+
+  &__link {
+    display: block;
+    position: relative;
+    aspect-ratio: 16 / 9;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slow;
+    }
+  }
+
+  &:hover &__link img {
+    transform: scale(1.03);
+  }
+
+  &__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: $spacing-xl;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-white;
+
+    .project-card--large & {
+      font-size: $font-size-xl;
+    }
+  }
+}
+
+// ============================================
+// CTA SECTION
+// ============================================
+.projects-cta {
+  background-color: $color-white;
+  border-top: 1px solid $color-border;
+
+  &__content {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-dark;
+    margin-bottom: $spacing-xl;
+    @include respond-to('md') { font-size: $font-size-xl; }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+  }
+}

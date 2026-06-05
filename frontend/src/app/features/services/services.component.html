@@ -1,0 +1,70 @@
+<!-- HERO SECTION -->
+<section class="services-hero">
+  <div class="services-hero__overlay"></div>
+  <div class="services-hero__content container">
+    <h1 class="services-hero__title">{{ heroTitle }}</h1>
+    <p class="services-hero__subtitle">{{ heroSubtitle }}</p>
+    <a routerLink="/contact" class="btn btn-primary">Consult with an Engineer</a>
+  </div>
+</section>
+
+<!-- SERVICE PORTFOLIO SECTION -->
+<section class="services-portfolio section-padding">
+  <div class="container">
+    <div class="services-portfolio__header">
+      <span class="section-label section-label--center">{{ sectionLabel }}</span>
+      <h2 class="services-portfolio__title">{{ sectionTitle }}</h2>
+    </div>
+
+    <div class="services-portfolio__grid">
+      <div class="service-card" *ngFor="let service of services">
+        <div class="service-card__icon">
+          <span class="material-icons">{{ service.icon }}</span>
+        </div>
+        <h3 class="service-card__title">{{ service.title }}</h3>
+        <p class="service-card__desc">{{ service.shortDescription }}</p>
+        <ul class="service-card__features">
+          <li *ngFor="let feature of service.features">
+            <span class="material-icons service-card__check">check_circle</span>
+            {{ feature }}
+          </li>
+        </ul>
+        <a class="service-card__link">
+          Learn More
+          <span class="material-icons">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS SECTION -->
+<section class="services-process section-padding">
+  <div class="container">
+    <div class="services-process__header">
+      <span class="section-label section-label--center">{{ processLabel }}</span>
+      <h2 class="services-process__title">{{ processTitle }}</h2>
+    </div>
+
+    <div class="services-process__steps">
+      <div class="process-step" *ngFor="let step of processSteps; let last = last">
+        <div class="process-step__icon-wrapper">
+          <div class="process-step__icon">
+            <span class="material-icons">{{ step.icon }}</span>
+          </div>
+        </div>
+        <h4 class="process-step__title">{{ step.title }}</h4>
+        <p class="process-step__desc">{{ step.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="services-cta">
+  <div class="container services-cta__content">
+    <h2 class="services-cta__title">{{ ctaTitle }}</h2>
+    <p class="services-cta__description">{{ ctaDescription }}</p>
+    <a routerLink="/contact" class="btn btn-primary">Consult with our Engineers</a>
+  </div>
+</section>

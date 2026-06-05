@@ -1,0 +1,109 @@
+<ng-container *ngIf="project">
+  <!-- HERO SECTION -->
+  <section class="detail-hero">
+    <div class="detail-hero__overlay"></div>
+    <img [src]="project.imageUrl" [alt]="project.title" class="detail-hero__bg" />
+    <div class="detail-hero__content container">
+      <h1 class="detail-hero__title">{{ project.title }}</h1>
+      <p class="detail-hero__subtitle">{{ project.shortDescription }}</p>
+      <div class="detail-hero__meta">
+        <span class="detail-hero__meta-item">
+          <span class="material-icons">location_on</span>
+          {{ project.location }}
+        </span>
+        <span class="detail-hero__meta-item">
+          <span class="material-icons">business</span>
+          {{ project.client }}
+        </span>
+        <span class="detail-hero__meta-item">
+          <span class="material-icons">event</span>
+          Completed {{ project.endDate | date:'yyyy' }}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section class="detail-content section-padding">
+    <div class="container detail-content__grid">
+      <!-- Left Column -->
+      <div class="detail-content__main">
+        <!-- Project Overview -->
+        <div class="detail-section">
+          <h2 class="detail-section__title">Project Overview</h2>
+          <p class="detail-section__text">{{ project.description }}</p>
+        </div>
+
+        <!-- The Challenge -->
+        <div class="detail-section">
+          <h2 class="detail-section__title">The Challenge</h2>
+          <div class="challenge-list">
+            <div class="challenge-item" *ngFor="let challenge of challenges">
+              <div class="challenge-item__icon">
+                <span class="material-icons">{{ challenge.icon }}</span>
+              </div>
+              <div class="challenge-item__content">
+                <h4 class="challenge-item__title">{{ challenge.title }}</h4>
+                <p class="challenge-item__desc">{{ challenge.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Engineering Solution -->
+        <div class="detail-section">
+          <h2 class="detail-section__title">Engineering Solution</h2>
+          <p class="detail-section__text">{{ solutionDescription }}</p>
+          <div class="detail-section__gallery" *ngIf="project.galleryImages.length > 0">
+            <img
+              *ngFor="let img of project.galleryImages"
+              [src]="img"
+              [alt]="project.title + ' gallery'"
+              loading="lazy"
+              class="detail-section__gallery-img"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Sidebar -->
+      <aside class="detail-content__sidebar">
+        <div class="spec-card">
+          <h3 class="spec-card__title">Project Specifications</h3>
+          <div class="spec-card__list">
+            <div class="spec-card__item" *ngFor="let spec of specifications">
+              <span class="spec-card__label">{{ spec.label }}</span>
+              <span class="spec-card__value">{{ spec.value }}</span>
+            </div>
+          </div>
+          <div class="spec-card__tags">
+            <span class="spec-card__tag">{{ project.category }}</span>
+            <span class="spec-card__tag">Energy &amp; Power Generation</span>
+          </div>
+          <button class="btn btn-primary spec-card__download">
+            <span class="material-icons">download</span>
+            Download Case Study PDF
+          </button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- RESULTS & IMPACT -->
+  <section class="detail-impact">
+    <div class="container">
+      <h2 class="detail-impact__heading">Results &amp; Impact</h2>
+      <div class="detail-impact__grid">
+        <div class="detail-impact__stat" *ngFor="let stat of impactStats">
+          <span class="detail-impact__stat-value">{{ stat.value }}</span>
+          <span class="detail-impact__stat-label">{{ stat.label }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-container>
+
+<!-- Loading / Not Found -->
+<div class="detail-loading container section-padding" *ngIf="!project">
+  <p>Loading project details...</p>
+</div>

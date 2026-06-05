@@ -1,0 +1,64 @@
+<!-- HERO SECTION -->
+<section class="projects-hero">
+  <div class="projects-hero__overlay"></div>
+  <div class="projects-hero__content container">
+    <h1 class="projects-hero__title">{{ heroTitle }}</h1>
+    <p class="projects-hero__subtitle">{{ heroSubtitle }}</p>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="projects-stats">
+  <div class="container">
+    <div class="projects-stats__grid">
+      <div class="projects-stats__item" *ngFor="let stat of stats">
+        <span class="projects-stats__value">{{ stat.value }}</span>
+        <span class="projects-stats__label">{{ stat.label }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT GRID WITH FILTERS -->
+<section class="projects-grid section-padding">
+  <div class="container">
+    <!-- Filter Tabs -->
+    <div class="projects-grid__filters">
+      <button
+        *ngFor="let cat of categories"
+        class="projects-grid__filter-btn"
+        [class.active]="activeFilter === cat"
+        (click)="filterByCategory(cat)"
+      >
+        {{ cat }}
+      </button>
+    </div>
+
+    <!-- Grid -->
+    <div class="projects-grid__items">
+      <div
+        class="project-card"
+        *ngFor="let project of filteredProjects; let i = index"
+        [class.project-card--large]="i === 0"
+      >
+        <a [routerLink]="['/projects', project.slug]" class="project-card__link">
+          <img [src]="project.imageUrl" [alt]="project.title" loading="lazy" />
+          <div class="project-card__overlay">
+            <h3 class="project-card__title">{{ project.title }}</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="projects-cta section-padding">
+  <div class="container projects-cta__content">
+    <h2 class="projects-cta__title">{{ ctaTitle }}</h2>
+    <div class="projects-cta__actions">
+      <a routerLink="/contact" class="btn btn-primary">Get Started</a>
+      <a routerLink="/about" class="btn btn-outline-dark">Download Company Profile</a>
+    </div>
+  </div>
+</section>
