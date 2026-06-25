@@ -1,70 +1,76 @@
-<!-- HERO SECTION -->
-<section class="services-hero">
-  <div class="services-hero__overlay"></div>
-  <div class="services-hero__content container">
-    <h1 class="services-hero__title">{{ heroTitle }}</h1>
-    <p class="services-hero__subtitle">{{ heroSubtitle }}</p>
-    <a routerLink="/contact" class="btn btn-primary">Consult with an Engineer</a>
+<!-- SERVICE PORTFOLIO HEADER -->
+<section class="services-portfolio-header">
+  <span class="section-label section-label--center">{{ sectionLabel }}</span>
+  <h2 class="services-portfolio-header__title">{{ sectionTitle }}</h2>
+  <div class="services-portfolio-header__divider"></div>
+</section>
+
+<!-- SERVICE TAB NAV -->
+<section class="services-tab-nav">
+  <div class="services-tab-nav__grid">
+    <div
+      class="tab-item"
+      *ngFor="let service of services; let i = index"
+      [class.tab-item--active]="activeIndex === i"
+      (click)="setActive(i)"
+    >
+      <div class="tab-item__icon">
+        <span class="material-icons">{{ service.icon }}</span>
+      </div>
+      <span class="tab-item__label">{{ service.title }}</span>
+    </div>
   </div>
 </section>
 
-<!-- SERVICE PORTFOLIO SECTION -->
-<section class="services-portfolio section-padding">
-  <div class="container">
-    <div class="services-portfolio__header">
-      <span class="section-label section-label--center">{{ sectionLabel }}</span>
-      <h2 class="services-portfolio__title">{{ sectionTitle }}</h2>
-    </div>
-
-    <div class="services-portfolio__grid">
-      <div class="service-card" *ngFor="let service of services">
-        <div class="service-card__icon">
-          <span class="material-icons">{{ service.icon }}</span>
+<!-- SERVICES VERTICAL DISPLAY -->
+<div class="services-sections">
+  <section
+    class="service-section"
+    *ngFor="let service of services; let i = index"
+    [class.service-section--alt]="i % 2 !== 0"
+    [id]="'service-' + i"
+  >
+    <div class="service-section__container">
+      <div class="service-section__grid" [class.service-section__grid--reversed]="i % 2 !== 0">
+        <!-- Text Content -->
+        <div class="service-section__content">
+          <p class="section-label">LAYANAN</p>
+          <h2 class="service-section__title">{{ service.title }}</h2>
+          <p class="service-section__desc">{{ service.description }}</p>
+          <ul class="service-section__features">
+            <li *ngFor="let feature of service.features" class="service-section__feature-item">
+              <div class="service-section__check-icon">
+                <span class="material-icons">check_circle</span>
+              </div>
+              <span>{{ feature }}</span>
+            </li>
+          </ul>
         </div>
-        <h3 class="service-card__title">{{ service.title }}</h3>
-        <p class="service-card__desc">{{ service.shortDescription }}</p>
-        <ul class="service-card__features">
-          <li *ngFor="let feature of service.features">
-            <span class="material-icons service-card__check">check_circle</span>
-            {{ feature }}
-          </li>
-        </ul>
-        <a class="service-card__link">
-          Learn More
-          <span class="material-icons">arrow_forward</span>
-        </a>
+        <!-- Image -->
+        <div class="service-section__image-wrap">
+          <img
+            [src]="service.imageUrl"
+            [alt]="service.title"
+            class="service-section__image"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- YOUR BENEFITS SECTION -->
+<section class="services-benefits">
+  <div class="services-benefits__container">
+    <h2 class="services-benefits__title">YOUR BENEFITS</h2>
+    <div class="services-benefits__grid">
+      <div class="benefit-item" *ngFor="let benefit of benefits">
+        <div class="benefit-item__icon">
+          <span class="material-icons">{{ benefit.icon }}</span>
+        </div>
+        <p class="benefit-item__label">{{ benefit.label }}</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS SECTION -->
-<section class="services-process section-padding">
-  <div class="container">
-    <div class="services-process__header">
-      <span class="section-label section-label--center">{{ processLabel }}</span>
-      <h2 class="services-process__title">{{ processTitle }}</h2>
-    </div>
-
-    <div class="services-process__steps">
-      <div class="process-step" *ngFor="let step of processSteps; let last = last">
-        <div class="process-step__icon-wrapper">
-          <div class="process-step__icon">
-            <span class="material-icons">{{ step.icon }}</span>
-          </div>
-        </div>
-        <h4 class="process-step__title">{{ step.title }}</h4>
-        <p class="process-step__desc">{{ step.description }}</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA SECTION -->
-<section class="services-cta">
-  <div class="container services-cta__content">
-    <h2 class="services-cta__title">{{ ctaTitle }}</h2>
-    <p class="services-cta__description">{{ ctaDescription }}</p>
-    <a routerLink="/contact" class="btn btn-primary">Consult with our Engineers</a>
-  </div>
-</section>

@@ -1,6 +1,7 @@
 <footer class="footer">
   <div class="footer__main">
     <div class="container footer__grid">
+
       <!-- Brand Column -->
       <div class="footer__brand">
         <a routerLink="/" class="footer__logo">
@@ -10,39 +11,60 @@
           <span class="footer__logo-text">MTJM</span>
         </a>
         <p class="footer__tagline">{{ companyTagline }}</p>
-      </div>
-
-      <!-- Links Column -->
-      <div class="footer__column">
-        <h4 class="footer__column-title">Links</h4>
-        <ul class="footer__links">
-          <li *ngFor="let link of footerLinks">
-            <a [routerLink]="link.route" class="footer__link">{{ link.label }}</a>
-          </li>
-        </ul>
+        <div class="footer__socials">
+          <a *ngFor="let social of socials" [href]="social.url" target="_blank" rel="noopener noreferrer" class="footer__social-link" [attr.aria-label]="social.label">
+            <span class="material-icons">{{ social.icon }}</span>
+          </a>
+        </div>
       </div>
 
       <!-- Contact Column -->
       <div class="footer__column">
-        <h4 class="footer__column-title">Contact</h4>
+        <h4 class="footer__column-title">Get In Touch</h4>
         <ul class="footer__contact-list">
-          <li class="footer__contact-item">
+          <li class="footer__contact-item footer__contact-item--address">
             <span class="material-icons footer__contact-icon">location_on</span>
-            <span>{{ contactInfo.location }}</span>
+            <span>{{ contactInfo.address }}</span>
           </li>
-          <li class="footer__contact-item">
+          <li *ngFor="let email of contactInfo.emails" class="footer__contact-item">
             <span class="material-icons footer__contact-icon">mail_outline</span>
-            <span>{{ contactInfo.email }}</span>
+            <a [href]="'mailto:' + email" class="footer__contact-link">{{ email }}</a>
+          </li>
+          <li *ngFor="let phone of contactInfo.phones" class="footer__contact-item">
+            <span class="material-icons footer__contact-icon">{{ phone.icon }}</span>
+            <a [href]="'tel:' + phone.number" class="footer__contact-link">{{ phone.label }}</a>
           </li>
         </ul>
       </div>
+
+      <!-- Map Column -->
+      <div class="footer__column">
+        <div class="footer__map-wrap">
+          <iframe
+            class="footer__map"
+            [src]="mapUrl"
+            width="100%"
+            height="200"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Lokasi PT MTJM"
+          ></iframe>
+          <a [href]="mapDirectionsUrl" target="_blank" rel="noopener noreferrer" class="footer__map-link">
+            <span class="material-icons">open_in_new</span>
+            Open in Maps
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <!-- Copyright Bar -->
   <div class="footer__copyright">
     <div class="container">
-      <p>&copy; {{ currentYear }} PT Multi Tehnik Jaya Mandiri. All rights reserved. Engineering Excellence.</p>
+      <p>&copy; {{ currentYear }} PT Multi Tehnik Jaya Mandiri. All Rights Reserved.</p>
     </div>
   </div>
 </footer>
