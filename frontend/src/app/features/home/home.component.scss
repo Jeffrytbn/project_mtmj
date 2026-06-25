@@ -1,64 +1,90 @@
 @import 'variables';
 
-// ============================================
-// Hero Section
-// ============================================
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  background-image: url('/assets/images/hero-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  // Fallback gradient if image doesn't load
-  background-color: $color-primary;
+// Catatan: .section-label dan .text-center TIDAK didefinisikan lagi di sini.
+// Class itu sudah jadi global lewat src/styles/_utilities.scss (di-import
+// dari styles.scss), jadi otomatis tersedia di template ini.
 
-  // Dark overlay
-  &__overlay {
+// ============================================
+// CAROUSEL
+// ============================================
+.home-carousel {
+  position: relative;
+  height: 70vh;
+  min-height: 420px;
+  max-height: 640px;
+  overflow: hidden;
+  background-color: $color-primary;
+  padding-top: $header-height; // offset fixed header
+
+  &__slide {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba($color-primary, 0.92) 0%,
-      rgba($color-primary, 0.75) 50%,
-      rgba($color-primary, 0.6) 100%
-    );
-    z-index: 1;
+    top: $header-height;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 1000ms ease;
+
+    &.active {
+      opacity: 1;
+      z-index: 1;
+    }
   }
 
-  &__container {
-    position: relative;
-    z-index: 2;
+  &__image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: $color-primary-medium; // fallback while image loads
+  }
+
+  &__dots {
+    position: absolute;
+    bottom: $spacing-lg;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: $spacing-3xl;
-    padding-top: calc($header-height + $spacing-3xl);
-    padding-bottom: $spacing-3xl;
-
-    @include respond-to('lg') {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: $spacing-2xl;
-    }
+    gap: $spacing-sm;
+    z-index: 2;
   }
 
-  // ---- Content (Left) ----
-  &__content {
-    flex: 1;
-    max-width: 560px;
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background-color: rgba($color-white, 0.45);
+    transition: background-color $transition-fast, transform $transition-fast;
 
-    @include respond-to('lg') {
-      max-width: 100%;
+    &:hover {
+      background-color: rgba($color-white, 0.8);
     }
+
+    &.active {
+      background-color: $color-accent;
+      transform: scale(1.2);
+    }
+  }
+}
+
+// ============================================
+// HERO CONTENT
+// ============================================
+.home-hero {
+  background-color: $color-white;
+
+  &__inner {
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: center;
   }
 
   &__title {
     font-size: $font-size-4xl;
     font-weight: $font-weight-extrabold;
-    color: $color-white;
+    color: $color-primary;
     line-height: 1.15;
     margin-bottom: $spacing-lg;
 
@@ -71,80 +97,240 @@
     }
   }
 
-  &__description {
-    font-size: $font-size-sm;
-    color: $color-text-light;
+  &__desc {
+    font-size: $font-size-base;
+    color: $color-text-muted;
     line-height: 1.8;
     margin-bottom: $spacing-xl;
-    max-width: 480px;
-
-    @include respond-to('lg') {
-      max-width: 100%;
-    }
   }
 
   &__actions {
     display: flex;
+    justify-content: center;
     gap: $spacing-md;
     flex-wrap: wrap;
   }
+}
 
-  // ---- Stats Card (Right) ----
-  &__stats-card {
-    background-color: $color-white;
-    border-radius: $border-radius-md;
-    padding: $spacing-xl $spacing-2xl;
-    box-shadow: $shadow-xl;
-    flex-shrink: 0;
-    width: 340px;
+// ============================================
+// SERVICES HIGHLIGHT
+// ============================================
+.home-services {
+  background-color: $color-white;
 
-    @include respond-to('lg') {
-      width: 100%;
-      max-width: 480px;
-    }
-
-    @include respond-to('sm') {
-      padding: $spacing-lg;
-    }
+  &__header {
+    margin-bottom: $spacing-3xl;
   }
 
-  &__stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: $spacing-xl;
-
-    @include respond-to('sm') {
-      gap: $spacing-lg;
-    }
-  }
-
-  &__stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: $spacing-xs;
-    padding: $spacing-sm;
-  }
-
-  &__stat-value {
+  &__title {
     font-size: $font-size-2xl;
     font-weight: $font-weight-bold;
     color: $color-primary;
-    line-height: 1;
   }
 
-  &__stat-icon {
-    font-size: 32px;
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.home-service-card {
+  padding: $spacing-xl;
+  background-color: $color-white;
+  border: 1px solid $color-border;
+  box-shadow: $shadow-sm;
+  transition: transform $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: $shadow-lg;
+
+    .home-service-card__icon .material-icons {
+      color: $color-accent;
+    }
+  }
+
+  &__icon {
+    margin-bottom: $spacing-lg;
+
+    .material-icons {
+      font-size: 48px;
+      color: $color-primary;
+      transition: color $transition-base;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-text-dark;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__desc {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    line-height: 1.7;
+  }
+}
+
+// ============================================
+// PORTFOLIO
+// ============================================
+.home-portfolio {
+  background-color: $color-bg-light;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
     color: $color-primary;
   }
 
-  &__stat-label {
+  &__view-all {
     font-size: $font-size-xs;
-    font-weight: $font-weight-medium;
-    color: $color-text-muted;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    border-bottom: 2px solid $color-primary;
+    padding-bottom: 2px;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
-    line-height: 1.3;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.portfolio-item {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: $border-radius-sm;
+
+  &--large {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+
+    @include respond-to('md') {
+      grid-column: span 1;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-slow;
+  }
+
+  &:hover img {
+    transform: scale(1.08);
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba($color-primary, 0.92) 0%, transparent 65%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: $spacing-lg;
+  }
+
+  &__category {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: $color-accent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__title {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $color-white;
+    line-height: 1.4;
+  }
+}
+
+// ============================================
+// PARTNERS
+// ============================================
+.home-partners {
+  background-color: $color-white;
+  border-top: 1px solid $color-border;
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    margin-bottom: $spacing-md;
+  }
+
+  &__desc {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto $spacing-2xl;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl $spacing-lg;
+    align-items: center;
+    justify-items: center;
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include respond-to('sm') {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-lg $spacing-md;
+    }
+  }
+
+  &__logo {
+    width: 100px;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.75;
+    transition: all $transition-base;
+
+    &:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1.05);
+    }
   }
 }
