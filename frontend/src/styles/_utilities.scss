@@ -1,0 +1,62 @@
+// ============================================
+// MTJM Global Utilities & Shared Patterns
+// ============================================
+// Class-class di file ini dipakai berulang di banyak halaman
+// (about, services, projects, news, home, dst).
+// Cukup didefinisikan SEKALI di sini -> otomatis tersedia di semua
+// komponen karena file ini di-import lewat styles.scss (global, tidak
+// di-scope oleh Angular ViewEncapsulation).
+//
+// Kalau butuh pattern baru yang dipakai di 2+ halaman, taruh di sini,
+// JANGAN didefinisikan ulang di tiap component.scss.
+
+@import 'variables';
+
+// ---- Generic layout helpers ----
+.text-center {
+  text-align: center;
+}
+
+// ---- Section label (label kecil uppercase di atas judul section) ----
+.section-label {
+  display: inline-block;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-accent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: $spacing-sm;
+
+  &--center {
+    display: block;
+    text-align: center;
+  }
+}
+
+// ---- Section header (label + title + subtitle, biasanya di atas grid) ----
+.section-header {
+  margin-bottom: $spacing-2xl;
+
+  &--center {
+    text-align: center;
+  }
+}
+
+.section-title {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-dark;
+  margin-bottom: $spacing-md;
+
+  @include respond-to('md') {
+    font-size: $font-size-xl;
+  }
+}
+
+.section-subtitle {
+  font-size: $font-size-base;
+  color: $color-text-muted;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}

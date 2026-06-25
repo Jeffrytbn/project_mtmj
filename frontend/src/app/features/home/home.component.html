@@ -1,29 +1,115 @@
-<section class="hero" id="hero">
-  <div class="hero__overlay"></div>
-  <div class="hero__container container">
-    <!-- Left Content -->
-    <div class="hero__content">
-      <h1 class="hero__title">{{ heroTitle }}</h1>
-      <p class="hero__description">{{ heroDescription }}</p>
-      <div class="hero__actions">
-        <a routerLink="/contact" class="btn btn-primary">Request Quotation</a>
-        <a routerLink="/projects" class="btn btn-outline">View Projects</a>
-      </div>
+<!-- =============================== -->
+<!-- CAROUSEL                        -->
+<!-- =============================== -->
+<section class="home-carousel">
+  <div
+    class="home-carousel__slide"
+    *ngFor="let slide of carouselSlides; let i = index"
+    [class.active]="i === activeSlide"
+  >
+    <div
+      class="home-carousel__image"
+      [style.background-image]="'url(' + slide.imageUrl + ')'"
+      [attr.aria-label]="slide.alt"
+      role="img"
+    ></div>
+  </div>
+
+  <div class="home-carousel__dots">
+    <button
+      *ngFor="let slide of carouselSlides; let i = index"
+      class="home-carousel__dot"
+      [class.active]="i === activeSlide"
+      (click)="goToSlide(i)"
+      [attr.aria-label]="'Slide ' + (i + 1)"
+      type="button"
+    ></button>
+  </div>
+</section>
+
+<!-- =============================== -->
+<!-- HERO CONTENT                    -->
+<!-- =============================== -->
+<section class="home-hero section-padding">
+  <div class="container home-hero__inner">
+    <h1 class="home-hero__title">{{ heroTitle }}</h1>
+    <p class="home-hero__desc">{{ heroDescription }}</p>
+    <div class="home-hero__actions">
+      <a routerLink="/contact" class="btn btn-primary">Konsultasi Sekarang</a>
+      <a routerLink="/services" class="btn btn-outline-dark">Lihat Layanan</a>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== -->
+<!-- SERVICES HIGHLIGHT              -->
+<!-- =============================== -->
+<section class="home-services section-padding">
+  <div class="container">
+    <div class="home-services__header text-center">
+      <span class="section-label section-label--center">{{ servicesLabel }}</span>
+      <h2 class="home-services__title">{{ servicesTitle }}</h2>
     </div>
 
-    <!-- Stats Card -->
-    <div class="hero__stats-card">
-      <div class="hero__stats-grid">
-        <div class="hero__stat" *ngFor="let stat of heroStats">
-          <ng-container *ngIf="stat.icon; else valueTemplate">
-            <span class="material-icons hero__stat-icon">{{ stat.icon }}</span>
-          </ng-container>
-          <ng-template #valueTemplate>
-            <span class="hero__stat-value">{{ stat.value }}</span>
-          </ng-template>
-          <span class="hero__stat-label">{{ stat.label }}</span>
+    <div class="home-services__grid">
+      <div class="home-service-card" *ngFor="let item of serviceHighlights">
+        <div class="home-service-card__icon">
+          <span class="material-icons">{{ item.icon }}</span>
         </div>
+        <h3 class="home-service-card__title">{{ item.title }}</h3>
+        <p class="home-service-card__desc">{{ item.description }}</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== -->
+<!-- PORTFOLIO                       -->
+<!-- =============================== -->
+<section class="home-portfolio section-padding">
+  <div class="container">
+    <div class="home-portfolio__header">
+      <div>
+        <span class="section-label">{{ portfolioLabel }}</span>
+        <h2 class="home-portfolio__title">{{ portfolioTitle }}</h2>
+      </div>
+      <a routerLink="/projects" class="home-portfolio__view-all">LIHAT SEMUA PROYEK</a>
+    </div>
+
+    <div class="home-portfolio__grid">
+      <a
+        routerLink="/projects"
+        class="portfolio-item"
+        *ngFor="let item of portfolioItems"
+        [class.portfolio-item--large]="item.large"
+      >
+        <img [src]="item.imageUrl" [alt]="item.title" loading="lazy" />
+        <div class="portfolio-item__overlay">
+          <p class="portfolio-item__category">{{ item.category }}</p>
+          <h4 class="portfolio-item__title">{{ item.title }}</h4>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== -->
+<!-- PARTNERS                        -->
+<!-- =============================== -->
+<section class="home-partners section-padding">
+  <div class="container text-center">
+    <span class="section-label section-label--center">{{ partnersLabel }}</span>
+    <h2 class="home-partners__title">{{ partnersTitle }}</h2>
+    <p class="home-partners__desc">{{ partnersDescription }}</p>
+
+    <div class="home-partners__grid">
+      <img
+        *ngFor="let partner of partners"
+        [src]="partner.logoUrl"
+        [alt]="partner.name"
+        class="home-partners__logo"
+        loading="lazy"
+      />
     </div>
   </div>
 </section>

@@ -28,6 +28,9 @@ $frontend-theme: mat.define-light-theme((
 // Design System Variables
 @import './styles/variables';
 
+// Global Utilities & Shared Patterns (section-label, section-header, dst)
+@import './styles/utilities';
+
 // ============================================
 // Reset & Base
 // ============================================
